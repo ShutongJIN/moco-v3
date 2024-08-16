@@ -82,7 +82,6 @@ class MoCo(nn.Module):
             loss
         """
 
-        # compute features
         q1 = self.predictor(self.base_encoder(x1))
         q2 = self.predictor(self.base_encoder(x2))
 

@@ -33,6 +33,7 @@ from torch.utils.tensorboard import SummaryWriter
 import moco.builder
 import moco.loader
 import moco.optimizer
+from moco.hdf5_loader import HDF5Dataset
 
 import vits
 
@@ -116,6 +117,7 @@ parser.add_argument('--warmup-epochs', default=10, type=int, metavar='N',
                     help='number of warmup epochs')
 parser.add_argument('--crop-min', default=0.08, type=float,
                     help='minimum scale for random cropping (default: 0.08)')
+parser.add_argument('--checkpoint_dir', default=None, type=str, help='path for saving checkpoint')
 
 
 def main():
@@ -254,7 +256,7 @@ def main_worker(gpu, ngpus_per_node, args):
     cudnn.benchmark = True
 
     # Data loading code
-    traindir = os.path.join(args.data, 'train')
+    # traindir = os.path.join(args.data, 'train')
     normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
                                      std=[0.229, 0.224, 0.225])
 
@@ -284,10 +286,13 @@ def main_worker(gpu, ngpus_per_node, args):
         normalize
     ]
 
-    train_dataset = datasets.ImageFolder(
-        traindir,
-        moco.loader.TwoCropsTransform(transforms.Compose(augmentation1), 
-                                      transforms.Compose(augmentation2)))
+    # original
+    # train_dataset = datasets.ImageFolder(
+    #     traindir,
+    #     moco.loader.TwoCropsTransform(transforms.Compose(augmentation1), 
+    #                                   transforms.Compose(augmentation2)))
+    
+    train_dataset = HDF5Dataset(args.data, transform=moco.loader.TwoCropsTransform(transforms.Compose(augmentation1), transforms.Compose(augmentation2)))
 
     if args.distributed:
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
@@ -307,14 +312,26 @@ def main_worker(gpu, ngpus_per_node, args):
 
         if not args.multiprocessing_distributed or (args.multiprocessing_distributed
                 and args.rank == 0): # only the first GPU saves checkpoint
+            # save_checkpoint({
+            #     'epoch': epoch + 1,
+            #     'arch': args.arch,
+            #     'state_dict': model.state_dict(),
+            #     'optimizer' : optimizer.state_dict(),
+            #     'scaler': scaler.state_dict(),
+            # }, is_best=False, filename='checkpoint_%04d.pth.tar' % epoch)
+            checkpoint_dir = args.checkpoint_dir
+            if not os.path.exists(checkpoint_dir):
+                os.makedirs(checkpoint_dir)
+
+            checkpoint_path = os.path.join(checkpoint_dir, 'checkpoint_%04d.pth.tar' % epoch)
+
             save_checkpoint({
                 'epoch': epoch + 1,
                 'arch': args.arch,
                 'state_dict': model.state_dict(),
                 'optimizer' : optimizer.state_dict(),
                 'scaler': scaler.state_dict(),
-            }, is_best=False, filename='checkpoint_%04d.pth.tar' % epoch)
-
+            }, is_best=False, filename=checkpoint_path)
     if args.rank == 0:
         summary_writer.close()
 
@@ -333,11 +350,31 @@ def train(train_loader, model, optimizer, scaler, summary_writer, epoch, args):
 
     end = time.time()
     iters_per_epoch = len(train_loader)
+    print("len(train_loader)", len(train_loader))
     moco_m = args.moco_m
-    for i, (images, _) in enumerate(train_loader):
+    # for i, (images, _) in enumerate(train_loader):
+    #     # measure data loading time
+    #     print("images.shape", images.shape)
+    #     data_time.update(time.time() - end)
+
+    #     # adjust learning rate and momentum coefficient per iteration
+    #     lr = adjust_learning_rate(optimizer, epoch + i / iters_per_epoch, args)
+    #     learning_rates.update(lr)
+    #     if args.moco_m_cos:
+    #         moco_m = adjust_moco_momentum(epoch + i / iters_per_epoch, args)
+
+    #     if args.gpu is not None:
+    #         images[0] = images[0].cuda(args.gpu, non_blocking=True)
+    #         images[1] = images[1].cuda(args.gpu, non_blocking=True)
+
+    #     # compute output
+    #     with torch.cuda.amp.autocast(True):
+    #         loss = model(images[0], images[1], moco_m)
+    for i, (images) in enumerate(train_loader):
         # measure data loading time
         data_time.update(time.time() - end)
-
+        # Separate the two crops
+        images1, images2 = images[:, 0, :, :, :], images[:, 1, :, :, :]  # Now images1 and images2 have shape [256, 3, 224, 224]
         # adjust learning rate and momentum coefficient per iteration
         lr = adjust_learning_rate(optimizer, epoch + i / iters_per_epoch, args)
         learning_rates.update(lr)
@@ -345,12 +382,12 @@ def train(train_loader, model, optimizer, scaler, summary_writer, epoch, args):
             moco_m = adjust_moco_momentum(epoch + i / iters_per_epoch, args)
 
         if args.gpu is not None:
-            images[0] = images[0].cuda(args.gpu, non_blocking=True)
-            images[1] = images[1].cuda(args.gpu, non_blocking=True)
+            images1 = images1.cuda(args.gpu, non_blocking=True)
+            images2 = images2.cuda(args.gpu, non_blocking=True)
 
         # compute output
         with torch.cuda.amp.autocast(True):
-            loss = model(images[0], images[1], moco_m)
+            loss = model(images1, images2, moco_m)
 
         losses.update(loss.item(), images[0].size(0))
         if args.rank == 0:
