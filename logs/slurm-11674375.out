@@ -461,3 +461,5 @@ DistributedDataParallel(
     )
   )
 )
+Loaded 1000000 images out of 1000000 requested.
+len(train_loader) 976

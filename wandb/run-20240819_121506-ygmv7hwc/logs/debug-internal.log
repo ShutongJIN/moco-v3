@@ -1,0 +1,75 @@
+2024-08-19 12:15:06,691 INFO    StreamThr :660632 [internal.py:wandb_internal():88] W&B internal server running at pid: 660632, started at: 2024-08-19 12:15:06.690041
+2024-08-19 12:15:06,693 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: status
+2024-08-19 12:15:06,696 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: status
+2024-08-19 12:15:06,698 DEBUG   SenderThread:660632 [sender.py:send():303] send: header
+2024-08-19 12:15:06,698 INFO    WriterThread:660632 [datastore.py:open_for_write():75] open: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/run-ygmv7hwc.wandb
+2024-08-19 12:15:06,771 DEBUG   SenderThread:660632 [sender.py:send():303] send: run
+2024-08-19 12:15:06,775 INFO    SenderThread:660632 [sender.py:_maybe_setup_resume():593] checking resume status for None/moco_pretraining/ygmv7hwc
+2024-08-19 12:15:07,379 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: check_version
+2024-08-19 12:15:07,381 INFO    SenderThread:660632 [dir_watcher.py:__init__():216] watching files in: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files
+2024-08-19 12:15:07,381 INFO    SenderThread:660632 [sender.py:_start_run_threads():928] run started: ygmv7hwc with start time 1724062506.683834
+2024-08-19 12:15:07,381 DEBUG   SenderThread:660632 [sender.py:send():303] send: summary
+2024-08-19 12:15:07,382 INFO    SenderThread:660632 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2024-08-19 12:15:07,383 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: check_version
+2024-08-19 12:15:07,426 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: run_start
+2024-08-19 12:15:07,499 DEBUG   HandlerThread:660632 [meta.py:__init__():34] meta init
+2024-08-19 12:15:07,499 DEBUG   HandlerThread:660632 [meta.py:__init__():49] meta init done
+2024-08-19 12:15:07,499 DEBUG   HandlerThread:660632 [meta.py:probe():215] probe
+2024-08-19 12:15:07,550 DEBUG   HandlerThread:660632 [meta.py:_setup_git():205] setup git
+2024-08-19 12:15:07,580 DEBUG   HandlerThread:660632 [meta.py:_setup_git():212] setup git done
+2024-08-19 12:15:07,580 DEBUG   HandlerThread:660632 [meta.py:_save_pip():53] save pip
+2024-08-19 12:15:07,581 DEBUG   HandlerThread:660632 [meta.py:_save_pip():67] save pip done
+2024-08-19 12:15:07,582 DEBUG   HandlerThread:660632 [meta.py:_save_conda():74] save conda
+2024-08-19 12:15:08,384 INFO    Thread-12 :660632 [dir_watcher.py:_on_file_created():275] file/dir created: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files/requirements.txt
+2024-08-19 12:15:08,385 INFO    Thread-12 :660632 [dir_watcher.py:_on_file_created():275] file/dir created: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files/wandb-summary.json
+2024-08-19 12:15:08,385 INFO    Thread-12 :660632 [dir_watcher.py:_on_file_created():275] file/dir created: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files/conda-environment.yaml
+2024-08-19 12:15:17,120 DEBUG   HandlerThread:660632 [meta.py:_save_conda():84] save conda done
+2024-08-19 12:15:17,121 DEBUG   HandlerThread:660632 [meta.py:probe():253] probe done
+2024-08-19 12:15:17,358 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:15:17,358 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:15:17,392 INFO    Thread-12 :660632 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files/conda-environment.yaml
+2024-08-19 12:15:17,392 INFO    Thread-12 :660632 [dir_watcher.py:_on_file_created():275] file/dir created: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files/wandb-metadata.json
+2024-08-19 12:15:17,537 DEBUG   SenderThread:660632 [sender.py:send():303] send: telemetry
+2024-08-19 12:15:17,538 DEBUG   SenderThread:660632 [sender.py:send():303] send: files
+2024-08-19 12:15:17,538 INFO    SenderThread:660632 [sender.py:_save_file():1171] saving file wandb-metadata.json with policy now
+2024-08-19 12:15:18,089 INFO    Thread-16 :660632 [upload_job.py:push():143] Uploaded file /tmp/tmpzy2_7czrwandb/1ymd4dvf-wandb-metadata.json
+2024-08-19 12:15:32,434 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:15:32,434 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:15:38,409 INFO    Thread-12 :660632 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files/config.yaml
+2024-08-19 12:15:46,757 DEBUG   SenderThread:660632 [sender.py:send():303] send: stats
+2024-08-19 12:15:47,690 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:15:47,690 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:16:02,955 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:16:02,956 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:16:18,212 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:16:18,212 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:16:26,412 DEBUG   SenderThread:660632 [sender.py:send():303] send: stats
+2024-08-19 12:16:33,440 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:16:33,440 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:16:48,632 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:16:48,633 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:17:03,809 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:17:03,810 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:17:05,917 DEBUG   SenderThread:660632 [sender.py:send():303] send: stats
+2024-08-19 12:17:19,077 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:17:19,078 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:17:34,342 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:17:34,343 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:17:45,907 DEBUG   SenderThread:660632 [sender.py:send():303] send: stats
+2024-08-19 12:17:49,524 DEBUG   HandlerThread:660632 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:17:49,525 DEBUG   SenderThread:660632 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:17:55,865 WARNING StreamThr :660632 [internal.py:is_dead():385] Internal process exiting, parent pid 656940 disappeared
+2024-08-19 12:17:55,866 ERROR   StreamThr :660632 [internal.py:wandb_internal():147] Internal process shutdown.
+2024-08-19 12:17:55,909 INFO    WriterThread:660632 [datastore.py:close():279] close: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/run-ygmv7hwc.wandb
+2024-08-19 12:17:56,571 INFO    HandlerThread:660632 [handler.py:finish():814] shutting down handler
+2024-08-19 12:17:56,737 INFO    SenderThread:660632 [sender.py:finish():1331] shutting down sender
+2024-08-19 12:17:56,737 INFO    SenderThread:660632 [dir_watcher.py:finish():362] shutting down directory watcher
+2024-08-19 12:17:57,430 INFO    SenderThread:660632 [dir_watcher.py:finish():392] scan: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files
+2024-08-19 12:17:57,430 INFO    SenderThread:660632 [dir_watcher.py:finish():406] scan save: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files/config.yaml config.yaml
+2024-08-19 12:17:57,430 INFO    SenderThread:660632 [dir_watcher.py:finish():406] scan save: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files/requirements.txt requirements.txt
+2024-08-19 12:17:57,431 INFO    SenderThread:660632 [dir_watcher.py:finish():406] scan save: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files/wandb-summary.json wandb-summary.json
+2024-08-19 12:17:57,438 INFO    SenderThread:660632 [dir_watcher.py:finish():406] scan save: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files/conda-environment.yaml conda-environment.yaml
+2024-08-19 12:17:57,441 INFO    SenderThread:660632 [dir_watcher.py:finish():406] scan save: /home/x_shuji/moco-v3/wandb/run-20240819_121506-ygmv7hwc/files/wandb-metadata.json wandb-metadata.json
+2024-08-19 12:17:57,441 INFO    SenderThread:660632 [file_pusher.py:finish():168] shutting down file pusher
+2024-08-19 12:17:57,442 INFO    SenderThread:660632 [file_pusher.py:join():173] waiting for file pusher
+2024-08-19 12:17:57,465 INFO    MainThread:660632 [internal.py:handle_exit():78] Internal process exited

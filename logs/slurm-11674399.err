@@ -59,49 +59,12 @@ https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environme
   return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
 /home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torch/functional.py:504: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at ../aten/src/ATen/native/TensorShape.cpp:3483.)
   return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
-Traceback (most recent call last):
-  File "/home/x_shuji/moco-v3/main_moco.py", line 455, in <module>
-    main()
-  File "/home/x_shuji/moco-v3/main_moco.py", line 152, in main
-    mp.spawn(main_worker, nprocs=ngpus_per_node, args=(ngpus_per_node, args))
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torch/multiprocessing/spawn.py", line 239, in spawn
-    return start_processes(fn, args, nprocs, join, daemon, start_method='spawn')
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torch/multiprocessing/spawn.py", line 197, in start_processes
-    while not context.join():
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torch/multiprocessing/spawn.py", line 160, in join
-    raise ProcessRaisedException(msg, error_index, failed_process.pid)
-torch.multiprocessing.spawn.ProcessRaisedException: 
-
--- Process 0 terminated with the following error:
-Traceback (most recent call last):
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torch/multiprocessing/spawn.py", line 69, in _wrap
-    fn(i, *args)
-  File "/home/x_shuji/moco-v3/main_moco.py", line 311, in main_worker
-    train(train_loader, model, optimizer, scaler, summary_writer, epoch, args)
-  File "/home/x_shuji/moco-v3/main_moco.py", line 354, in train
-    for i, (images, _) in enumerate(train_loader):
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 634, in __next__
-    data = self._next_data()
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1346, in _next_data
-    return self._process_data(data)
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torch/utils/data/dataloader.py", line 1372, in _process_data
-    data.reraise()
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torch/_utils.py", line 644, in reraise
-    raise exception
-TypeError: Caught TypeError in DataLoader worker process 0.
-Original Traceback (most recent call last):
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torch/utils/data/_utils/worker.py", line 308, in _worker_loop
-    data = fetcher.fetch(index)
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
-    data = [self.dataset[idx] for idx in possibly_batched_index]
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
-    data = [self.dataset[idx] for idx in possibly_batched_index]
-  File "/home/x_shuji/moco-v3/moco/hdf5_loader.py", line 57, in __getitem__
-    image = transforms.ToTensor()(image)
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torchvision/transforms/transforms.py", line 137, in __call__
-    return F.to_tensor(pic)
-  File "/home/x_shuji/.conda/envs/data4robotics/lib/python3.9/site-packages/torchvision/transforms/functional.py", line 140, in to_tensor
-    raise TypeError(f"pic should be PIL Image or ndarray. Got {type(pic)}")
-TypeError: pic should be PIL Image or ndarray. Got <class 'list'>
-
-
+wandb: Currently logged in as: shutong-jin1999. Use `wandb login --relogin` to force relogin
+wandb: wandb version 0.17.7 is available!  To upgrade, please run:
+wandb:  $ pip install wandb --upgrade
+wandb: Tracking run with wandb version 0.13.4
+wandb: Run data is saved locally in /home/x_shuji/moco-v3/wandb/run-20240819_125201-xixet0ry
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run vague-donkey-11
+wandb: ⭐️ View project at https://wandb.ai/shutong-jin1999/moco_pretraining
+wandb: 🚀 View run at https://wandb.ai/shutong-jin1999/moco_pretraining/runs/xixet0ry

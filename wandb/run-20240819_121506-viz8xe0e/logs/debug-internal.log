@@ -1,0 +1,61 @@
+2024-08-19 12:15:06,687 INFO    StreamThr :660631 [internal.py:wandb_internal():88] W&B internal server running at pid: 660631, started at: 2024-08-19 12:15:06.685678
+2024-08-19 12:15:06,689 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: status
+2024-08-19 12:15:06,692 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: status
+2024-08-19 12:15:06,694 DEBUG   SenderThread:660631 [sender.py:send():303] send: header
+2024-08-19 12:15:06,694 INFO    WriterThread:660631 [datastore.py:open_for_write():75] open: /home/x_shuji/moco-v3/wandb/run-20240819_121506-viz8xe0e/run-viz8xe0e.wandb
+2024-08-19 12:15:06,762 DEBUG   SenderThread:660631 [sender.py:send():303] send: run
+2024-08-19 12:15:06,765 INFO    SenderThread:660631 [sender.py:_maybe_setup_resume():593] checking resume status for None/moco_pretraining/viz8xe0e
+2024-08-19 12:15:07,281 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: check_version
+2024-08-19 12:15:07,284 INFO    SenderThread:660631 [dir_watcher.py:__init__():216] watching files in: /home/x_shuji/moco-v3/wandb/run-20240819_121506-viz8xe0e/files
+2024-08-19 12:15:07,284 INFO    SenderThread:660631 [sender.py:_start_run_threads():928] run started: viz8xe0e with start time 1724062506.68093
+2024-08-19 12:15:07,284 DEBUG   SenderThread:660631 [sender.py:send():303] send: summary
+2024-08-19 12:15:07,285 INFO    SenderThread:660631 [sender.py:_save_file():1171] saving file wandb-summary.json with policy end
+2024-08-19 12:15:07,285 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: check_version
+2024-08-19 12:15:07,365 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: run_start
+2024-08-19 12:15:07,417 DEBUG   HandlerThread:660631 [meta.py:__init__():34] meta init
+2024-08-19 12:15:07,417 DEBUG   HandlerThread:660631 [meta.py:__init__():49] meta init done
+2024-08-19 12:15:07,417 DEBUG   HandlerThread:660631 [meta.py:probe():215] probe
+2024-08-19 12:15:07,441 DEBUG   HandlerThread:660631 [meta.py:_setup_git():205] setup git
+2024-08-19 12:15:07,470 DEBUG   HandlerThread:660631 [meta.py:_setup_git():212] setup git done
+2024-08-19 12:15:07,470 DEBUG   HandlerThread:660631 [meta.py:_save_pip():53] save pip
+2024-08-19 12:15:07,471 DEBUG   HandlerThread:660631 [meta.py:_save_pip():67] save pip done
+2024-08-19 12:15:07,471 DEBUG   HandlerThread:660631 [meta.py:_save_conda():74] save conda
+2024-08-19 12:15:08,286 INFO    Thread-12 :660631 [dir_watcher.py:_on_file_created():275] file/dir created: /home/x_shuji/moco-v3/wandb/run-20240819_121506-viz8xe0e/files/requirements.txt
+2024-08-19 12:15:08,287 INFO    Thread-12 :660631 [dir_watcher.py:_on_file_created():275] file/dir created: /home/x_shuji/moco-v3/wandb/run-20240819_121506-viz8xe0e/files/conda-environment.yaml
+2024-08-19 12:15:08,287 INFO    Thread-12 :660631 [dir_watcher.py:_on_file_created():275] file/dir created: /home/x_shuji/moco-v3/wandb/run-20240819_121506-viz8xe0e/files/wandb-summary.json
+2024-08-19 12:15:17,294 INFO    Thread-12 :660631 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/x_shuji/moco-v3/wandb/run-20240819_121506-viz8xe0e/files/conda-environment.yaml
+2024-08-19 12:15:17,444 DEBUG   HandlerThread:660631 [meta.py:_save_conda():84] save conda done
+2024-08-19 12:15:17,444 DEBUG   HandlerThread:660631 [meta.py:probe():253] probe done
+2024-08-19 12:15:17,676 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:15:17,677 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:15:17,888 DEBUG   SenderThread:660631 [sender.py:send():303] send: telemetry
+2024-08-19 12:15:17,889 DEBUG   SenderThread:660631 [sender.py:send():303] send: files
+2024-08-19 12:15:17,889 INFO    SenderThread:660631 [sender.py:_save_file():1171] saving file wandb-metadata.json with policy now
+2024-08-19 12:15:18,295 INFO    Thread-12 :660631 [dir_watcher.py:_on_file_created():275] file/dir created: /home/x_shuji/moco-v3/wandb/run-20240819_121506-viz8xe0e/files/wandb-metadata.json
+2024-08-19 12:15:18,426 INFO    Thread-16 :660631 [upload_job.py:push():143] Uploaded file /tmp/tmpu35cfatpwandb/pvvh5m3z-wandb-metadata.json
+2024-08-19 12:15:32,334 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:15:32,335 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:15:37,310 INFO    Thread-12 :660631 [dir_watcher.py:_on_file_modified():292] file/dir modified: /home/x_shuji/moco-v3/wandb/run-20240819_121506-viz8xe0e/files/config.yaml
+2024-08-19 12:15:46,308 DEBUG   SenderThread:660631 [sender.py:send():303] send: stats
+2024-08-19 12:15:47,769 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:15:47,770 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:16:02,982 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:16:02,982 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:16:18,187 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:16:18,187 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:16:25,570 DEBUG   SenderThread:660631 [sender.py:send():303] send: stats
+2024-08-19 12:16:33,450 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:16:33,451 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:16:48,705 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:16:48,709 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:17:03,968 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:17:03,968 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:17:04,571 DEBUG   SenderThread:660631 [sender.py:send():303] send: stats
+2024-08-19 12:17:19,181 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:17:19,182 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:17:34,354 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:17:34,354 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:17:44,693 DEBUG   SenderThread:660631 [sender.py:send():303] send: stats
+2024-08-19 12:17:49,582 DEBUG   HandlerThread:660631 [handler.py:handle_request():138] handle_request: stop_status
+2024-08-19 12:17:49,582 DEBUG   SenderThread:660631 [sender.py:send_request():317] send_request: stop_status
+2024-08-19 12:17:59,364 INFO    MainThread:660631 [internal.py:handle_exit():78] Internal process exited

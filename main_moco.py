@@ -37,6 +37,8 @@ from moco.hdf5_loader import HDF5Dataset
 
 import vits
 
+import wandb
+
 
 torchvision_model_names = sorted(name for name in torchvision_models.__dict__
     if name.islower() and not name.startswith("__")
@@ -118,6 +120,10 @@ parser.add_argument('--warmup-epochs', default=10, type=int, metavar='N',
 parser.add_argument('--crop-min', default=0.08, type=float,
                     help='minimum scale for random cropping (default: 0.08)')
 parser.add_argument('--checkpoint_dir', default=None, type=str, help='path for saving checkpoint')
+
+parser.add_argument('--max_images', default=None, type=int, help='maximum number of images to load')
+
+parser.add_argument('--print_freq', default=10, type=int, help='print frequency (default: 10)')
 
 
 def main():
@@ -234,6 +240,19 @@ def main_worker(gpu, ngpus_per_node, args):
     scaler = torch.cuda.amp.GradScaler()
     summary_writer = SummaryWriter() if args.rank == 0 else None
 
+    # add wandb initialization
+    if not args.distributed or dist.get_rank() == 0:
+        wandb.init(
+        project="moco_pretraining",
+        config={
+            "learning_rate": args.lr,
+            "epochs": args.epochs,
+            "batch_size": args.batch_size,
+        },
+        resume="allow",  # Allows resuming from a checkpoint
+    )    
+
+
     # optionally resume from a checkpoint
     if args.resume:
         if os.path.isfile(args.resume):
@@ -244,6 +263,10 @@ def main_worker(gpu, ngpus_per_node, args):
                 # Map model to be loaded to specified single gpu.
                 loc = 'cuda:{}'.format(args.gpu)
                 checkpoint = torch.load(args.resume, map_location=loc)
+            if 'wandb_id' in checkpoint:
+                wandb.run.id = checkpoint['wandb_id']
+                wandb.run.resume = "must"
+                
             args.start_epoch = checkpoint['epoch']
             model.load_state_dict(checkpoint['state_dict'])
             optimizer.load_state_dict(checkpoint['optimizer'])
@@ -292,7 +315,7 @@ def main_worker(gpu, ngpus_per_node, args):
     #     moco.loader.TwoCropsTransform(transforms.Compose(augmentation1), 
     #                                   transforms.Compose(augmentation2)))
     
-    train_dataset = HDF5Dataset(args.data, transform=moco.loader.TwoCropsTransform(transforms.Compose(augmentation1), transforms.Compose(augmentation2)))
+    train_dataset = HDF5Dataset(args.data, transform=moco.loader.TwoCropsTransform(transforms.Compose(augmentation1), transforms.Compose(augmentation2)), max_images=args.max_images)
 
     if args.distributed:
         train_sampler = torch.utils.data.distributed.DistributedSampler(train_dataset)
@@ -302,7 +325,6 @@ def main_worker(gpu, ngpus_per_node, args):
     train_loader = torch.utils.data.DataLoader(
         train_dataset, batch_size=args.batch_size, shuffle=(train_sampler is None),
         num_workers=args.workers, pin_memory=True, sampler=train_sampler, drop_last=True)
-
     for epoch in range(args.start_epoch, args.epochs):
         if args.distributed:
             train_sampler.set_epoch(epoch)
@@ -331,7 +353,9 @@ def main_worker(gpu, ngpus_per_node, args):
                 'state_dict': model.state_dict(),
                 'optimizer' : optimizer.state_dict(),
                 'scaler': scaler.state_dict(),
+                'wandb_id': wandb.run.id, 
             }, is_best=False, filename=checkpoint_path)
+
     if args.rank == 0:
         summary_writer.close()
 
@@ -392,6 +416,7 @@ def train(train_loader, model, optimizer, scaler, summary_writer, epoch, args):
         losses.update(loss.item(), images[0].size(0))
         if args.rank == 0:
             summary_writer.add_scalar("loss", loss.item(), epoch * iters_per_epoch + i)
+            wandb.log({"train_loss": loss.item(), "lr": lr}, step=epoch)
 
         # compute gradient and do SGD step
         optimizer.zero_grad()
